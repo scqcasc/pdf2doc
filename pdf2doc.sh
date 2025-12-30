@@ -9,7 +9,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 [[ ! -z $1 ]] && pdf_file=$1
 [[ ! -z $2 ]] && doc_file=$2
 
-if [[ $pdf_file == 'unset' ]] && [[ $doc_file == 'unset' ]]
+if [[ $pdf_file == 'unset' ]] 
 then
   echo "Usage: pdf2doc.sh <pdf_file> <doc_file>"
   exit 1
@@ -20,4 +20,11 @@ then
   echo "Usage: pdf2doc.sh <pdf_file> <doc_file>"
   exit 1
 fi
+
+if [[ ! -f $pdf_file ]]
+then
+  echo "${pdf_file}: file not found"
+  exit 2
+fi
+
 python $SCRIPT_DIR/pdf2doc/main.py $pdf_file $doc_file
