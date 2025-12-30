@@ -15,4 +15,9 @@ then
   exit 1
 fi
 
-python $SCRIPT_DIR/main.py $pdf_file $doc_file
+if [[ $doc_file == 'unset' ]]
+then
+  echo "Usage: pdf2doc.sh <pdf_file> <doc_file>"
+  exit 1
+fi
+python $SCRIPT_DIR/pdf2doc/main.py $pdf_file $doc_file
